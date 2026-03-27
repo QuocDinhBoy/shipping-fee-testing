@@ -2,6 +2,7 @@ import unittest
 from calculate_shipping_fee import calculate_total_shipping_fee
 class TestCalculateTotalShippingFee(unittest.TestCase):
 
+#Kiểm thử biên
     def test_BV_1(self):
         with self.assertRaises(ValueError):
             calculate_total_shipping_fee(-0.1, 300000, False, False)
@@ -93,6 +94,31 @@ class TestCalculateTotalShippingFee(unittest.TestCase):
             calculate_total_shipping_fee(5, 300000, False, True),
             37000
         )
+    
+#Kiểm thử với độ đo C2
+    def test_C2_1(self):
+        with self.assertRaises(ValueError):
+            calculate_total_shipping_fee(-1, 300000, False, False)
+
+    def test_C2_2(self):
+        with self.assertRaises(ValueError):
+            calculate_total_shipping_fee(101, 300000, False, False)
+
+    def test_C2_3(self):
+        with self.assertRaises(ValueError):
+            calculate_total_shipping_fee(2, -1, False, False) 
+
+    def test_C2_4(self):
+        self.assertEqual(
+            calculate_total_shipping_fee(5, 300000, False, False),
+            25000
+        )
+
+    def test_C2_5(self):
+        self.assertEqual(
+            calculate_total_shipping_fee(2, 100000, True, True),
+            30000
+        )        
 
 if __name__ == "__main__":
     unittest.main()
