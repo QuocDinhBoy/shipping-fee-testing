@@ -118,7 +118,32 @@ class TestCalculateTotalShippingFee(unittest.TestCase):
         self.assertEqual(
             calculate_total_shipping_fee(2, 100000, True, True),
             30000
-        )        
+        )    
+        
+#Kiểm thử với độ đo all uses
+    def test_all_uses_1(self):
+        with self.assertRaises(ValueError):
+            calculate_total_shipping_fee(-1, 300000, False, False)
+ 
+    def test_all_uses_2(self):
+        with self.assertRaises(ValueError):
+            calculate_total_shipping_fee(101, 300000, False, False)
+
+    def test_all_uses_3(self):
+        with self.assertRaises(ValueError):
+            calculate_total_shipping_fee(10, 0, False, False)
+
+    def test_all_uses_4(self):
+        self.assertEqual(
+            calculate_total_shipping_fee(2, 100000, True, True),
+            30000
+        ) 
+
+    def test_all_uses_5(self):
+        self.assertEqual(
+            calculate_total_shipping_fee(5, 300000, False, False),
+            25000
+        )     
 
 if __name__ == "__main__":
     unittest.main()
